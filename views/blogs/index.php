@@ -5,7 +5,7 @@
           <p class="day">
               <?php echo $viewOption['created']; ?>
             [<a href="/seed_blog/blogs/edit/<?php echo $viewOption['id']; ?>" style="color: #00994C;">編集</a>]
-            [<a href="/seed_blog/blogs/delete/<?php echo $viewOption['id']; ?>" style="color: #F33;">削除</a>]
+            [<a href="/seed_blog/blogs/delete/<?php echo $viewOption['id']; ?>" onclick="return confirm('本当に削除してもよろしいですか？');" style="color: #F33;">削除</a>]
           </p>
         </div>
       <?php endforeach; ?>

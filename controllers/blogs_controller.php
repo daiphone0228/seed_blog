@@ -12,6 +12,30 @@
 			$controller->index();
 			break;
 
+		case 'show':
+			$controller->show($id);
+			break;
+
+		case 'add':
+			$controller->add();
+			break;
+
+		case 'create':
+			$controller->create($post);
+			break;
+
+		case 'edit':
+			$controller->edit($id);
+			break;
+
+		case 'update':
+			$controller->update($post);
+			break;
+
+		case 'delete':
+			$controller->delete($id);
+			break;
+
 		default:
 			# code...
 			break;
@@ -40,7 +64,58 @@
 			$this->action = 'index';
 
 			// ビューを呼び出す
-			require('views/layout/application.php');
+			include('views/layout/application.php');
 		}
+
+		public function show($id) {
+			$blog = new Blog();
+			$this->viewOptions = $blog->show($id);
+			// var_dump($this->viewOptions);
+
+			$this->action = 'show';
+
+			include('views/layout/application.php');
+
+		}
+
+		public function add() {
+			$this->action = 'add';
+
+			include('views/layout/application.php');
+
+		}
+
+		public function create($post) {
+			$blog = new Blog();
+			$blog->create($post);
+
+			header('Location: /seed_blog/blogs/index');
+
+		}
+
+		public function edit($id) {
+			$blog = new Blog();
+			$this->viewOptions = $blog->edit($id);
+			$this->action = 'edit';
+
+			include('views/layout/application.php');
+		}
+
+		public function update($post) {
+			$blog = new Blog();
+			$blog->update($post);
+
+			header('Location: /seed_blog/blogs/index');
+
+		}
+
+		public function delete($id) {
+			$blog = new Blog();
+			$blog->delete($id);
+
+			header('Location: /seed_blog/blogs/index');
+		}
+
+
 	}
  ?>
